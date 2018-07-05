@@ -9,18 +9,7 @@ defmodule CepixTest do
   @via_cep_invalid "viacep.com.br/ws/01001000"
 
   test "run_cep" do
-    assert Cepix.run_cep(@cep_test_integer) == %{
-             "bairro" => "Sé",
-             "cep" => "01001-000",
-             "complemento" => "lado ímpar",
-             "gia" => "1004",
-             "ibge" => "3550308",
-             "localidade" => "São Paulo",
-             "logradouro" => "Praça da Sé",
-             "uf" => "SP",
-             "unidade" => ""
-           }
-
+    assert Cepix.run_cep(@cep_test_integer) == "Not found :("
     assert Cepix.run_cep(@via_cep_invalid) == "Not found :("
 
     assert Cepix.run_cep(@cep_test_list) == [
