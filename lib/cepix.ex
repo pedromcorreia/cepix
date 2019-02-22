@@ -1,11 +1,14 @@
 defmodule Cepix do
   @moduledoc """
-  Documentation for Cepix.
+  This is the main module of Cepix.
+  The main objetive of it is to make a little bit easier to get the CEP for brazilians address.
   """
+
+  alias Cepix.Integration
 
   @doc """
+  This will return a list of ceps from the cep_code list passes as argument.
   """
-
   def run_cep(cep_code)
 
   def run_cep(cep_code) when is_list(cep_code) do
@@ -17,30 +20,12 @@ defmodule Cepix do
   end
 
   def run_cep(cep_code) do
-    http_request(cep_code)
+    Integration.http_request(cep_code)
   end
 
   def run_place(uf, city, street) do
-    http_request(uf <> "/" <> replace_nil(city) <> "/" <> street)
+    Integration.http_request(uf <> "/" <> replace_nil(city) <> "/" <> street)
   end
-
-  def http_request(attrs) do
-    url = "viacep.com.br/ws/#{attrs}/json"
-    HTTPoison.start()
-
-    case HTTPoison.get(url) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        parser(body)
-
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        "Not found :("
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        reason
-    end
-  end
-
-  defp parser(body_json), do: Poison.decode!(body_json)
 
   defp replace_nil(attr), do: String.replace(attr, " ", "%20")
 end

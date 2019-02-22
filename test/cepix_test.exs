@@ -5,7 +5,6 @@ defmodule CepixTest do
   @cep_test "01001000"
   @cep_test_integer 01_001_000
   @cep_test_list ["01001000", "09781300", "05602110"]
-  @via_cep "01001000"
   @via_cep_invalid "viacep.com.br/ws/01001000"
 
   test "run_cep" do
@@ -79,22 +78,5 @@ defmodule CepixTest do
            }
 
     assert result_list |> Enum.count() == 15
-  end
-
-  test "http_request" do
-    assert Cepix.http_request(@via_cep_invalid) == "Not found :("
-
-    assert Cepix.http_request(@via_cep) ==
-             %{
-               "bairro" => "Sé",
-               "cep" => "01001-000",
-               "complemento" => "lado ímpar",
-               "gia" => "1004",
-               "ibge" => "3550308",
-               "localidade" => "São Paulo",
-               "logradouro" => "Praça da Sé",
-               "uf" => "SP",
-               "unidade" => ""
-             }
   end
 end

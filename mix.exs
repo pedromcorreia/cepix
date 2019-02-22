@@ -22,7 +22,9 @@ defmodule Cepix.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
     ]
   end
 end
