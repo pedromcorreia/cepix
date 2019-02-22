@@ -8,6 +8,24 @@ defmodule Cepix do
 
   @doc """
   This will return a list of ceps from the cep_code list passes as argument.
+
+  ## Examples
+  iex> Cepix.run_cep "80030000"
+  %{
+    "bairro" => "Alto da Glória",
+    "cep" => "80030-000",
+    "complemento" => "até 1343/1344",
+    "gia" => "",
+    "ibge" => "4106902",
+    "localidade" => "Curitiba",
+    "logradouro" => "Avenida João Gualberto",
+    "uf" => "PR",
+    "unidade" => ""
+  }
+
+  iex> Cepix.run_cep "80030000"
+  "Not found :("
+
   """
   def run_cep(cep_code)
 

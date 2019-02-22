@@ -17,6 +17,9 @@ defmodule Cepix.Integration do
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         "Not found :("
 
+      {:ok, %HTTPoison.Response{status_code: 400}} ->
+        "Not found :("
+
       {:error, %HTTPoison.Error{reason: reason}} ->
         reason
     end
