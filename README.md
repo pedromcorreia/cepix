@@ -7,7 +7,7 @@ An lib that return a list of brazilian code postal, as know as CEP.
 First, add Cepix to your  `mix.exs`  dependencies:
 ```
 def deps do
-  [{:Cepix, "~> 1.0"}]
+  [{:cepix, git: "https://github.com/pedromcorreia/cepix"}]
 end
 ```
 
